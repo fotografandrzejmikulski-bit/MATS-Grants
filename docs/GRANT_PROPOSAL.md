@@ -1,83 +1,105 @@
-# Detecting and Mitigating Deceptive Behaviour in Advanced Language Models
+# From Oversight-Sensitive Behaviour to Causal Representation Tests
 
 ## Executive summary
 
-This project proposes an empirical investigation of deceptive or oversight-sensitive behaviour in language models using controlled model organisms, behavioural evaluations, activation-level analysis and causal interventions. The core objective is narrower than building a universal "neural circuit breaker": first establish whether a reproducible internal signal exists, whether it predicts behaviour out of distribution, and whether interventions on that signal change behaviour causally without unacceptable capability degradation.
+I propose an empirical study of oversight-sensitive behaviour in language models. The central question is whether a reproducible behavioural difference between matched oversight conditions can be distinguished from ordinary context dependence, and whether internal representations provide additional predictive or causal evidence.
 
-The project is designed around four principles: falsifiability, containment, causal evidence, and fast iteration. The research will begin with small, reproducible model organisms and scale only when earlier stages produce robust evidence.
+The project deliberately avoids beginning with the assumption that an observed anomaly is deceptive alignment. Instead, it follows an evidence ladder: **behavioural effect → predictive internal signal → causal intervention → robustness → safety relevance**. Each stage has to pass explicit controls before the project scales.
+
+The work is strongly aligned with the Autumn 2026 Apollo Research Science of Scheming stream, which MATS describes as empirical research on oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and scaling questions. citeturn252053search4turn252053search6
 
 ## Research questions
 
 ### RQ1 — Behavioural consistency
-Can controlled training or prompting produce a reproducible gap between behaviour under strong versus weak oversight conditions, while holding task difficulty and capability requirements approximately constant?
+Can a contained model organism exhibit a reproducible difference between stronger and weaker oversight conditions while task family and difficulty are matched?
 
 ### RQ2 — Internal signatures
-Do activation-level features or learned representations predict the oversight-sensitive behaviour better than behavioural proxies alone?
+Do activation-derived features predict the target behaviour on held-out prompts and tasks better than prompt-only and behavioural baselines?
 
-### RQ3 — Causality
-Do interventions on candidate representations change the probability or severity of the target behaviour, with appropriate controls and without merely changing general refusal or task competence?
+### RQ3 — Causal structure
+Does intervention on a candidate representation change the target behaviour in the expected direction, while preserving task capability and controlling for generic refusal effects?
 
 ### RQ4 — Robustness
-Do candidate signatures survive changes in prompt wording, task family, random seed, model checkpoint, and evaluator setup?
+Do candidate signals survive changes in prompt wording, task family, random seed, evaluator configuration and, where feasible, model checkpoint?
 
-## Hypotheses
+## Falsifiable hypotheses
 
-**H1.** A deliberately constructed model organism can exhibit a measurable and repeatable difference between monitored and weakly monitored conditions.
+**H1:** A contained model organism can exhibit a repeatable oversight-condition effect.
 
-**H2.** At least some behavioural variance can be predicted from internal representations above strong behavioural baselines.
+**H2:** Some internal representation measurements predict that effect on held-out data above strong behavioural baselines.
 
-**H3.** A subset of candidate representation directions will demonstrate causal influence in intervention experiments.
+**H3:** At least one candidate representation shows causal influence under controlled intervention.
 
-**H4.** Many apparently striking signals will fail robustness tests; these negative results are first-class outcomes.
+**H4:** A substantial fraction of initially attractive candidate signals fail robustness or negative-control tests.
+
+Rejection of H3 is a scientifically useful outcome. The project does not require demonstrating a universal detector or circuit breaker.
 
 ## Experimental design
 
 ### Phase 1 — Baselines and model organisms
 
-Construct contained toy environments and benign proxy tasks in which the target variable is observable and the failure mode can be measured without requiring deployment against real systems. Establish capability, reward, and refusal baselines before introducing any adversarial manipulation.
+Use synthetic or explicitly approved contained environments. Establish capability, difficulty, refusal and oversight-condition baselines before introducing any manipulation. Use matched tasks so that changes cannot be explained simply by task difficulty.
 
-### Phase 2 — Behavioural evaluations
+### Phase 2 — Behavioural evaluation
 
-Evaluate multiple oversight conditions, task families, seeds and prompt templates. Pre-register primary metrics where practical. Use held-out prompts and tasks to separate genuine generalisation from prompt-specific imitation.
+Run multiple seeds, task families and prompt templates. Define train/validation/test splits before inspecting held-out outcomes. Measure target-behaviour rate, oversight-condition effect size, capability, refusal and calibration.
 
-### Phase 3 — Mechanistic analysis
+### Phase 3 — Representation analysis
 
-Collect activations from selected layers and train sparse feature dictionaries / probes where justified. Compare linear probes, SAE-based representations and simpler behavioural baselines. Report reconstruction error, probe calibration, leakage and out-of-distribution performance rather than treating a probe as evidence of a human-interpretable concept by itself.
+Collect activations from selected layers and compare simple linear probes with sparse-feature methods when justified. Report AUROC/AUPRC, calibration, cross-prompt transfer, cross-task transfer and leakage controls. Treat probes as measurement instruments, not proof of semantic concepts.
 
 ### Phase 4 — Causal intervention
 
-Patch, ablate or steer candidate representations in controlled settings. Measure target-behaviour change, capability change, refusal change and collateral effects. A candidate mechanism is considered promising only when intervention results replicate and survive negative controls.
+Intervene on candidate representations in the contained benchmark using minimal ablations, patching or steering. Measure target behaviour, task capability, refusal and collateral effects. Require replication before describing a candidate as mechanistically explanatory.
 
-### Phase 5 — Safety mechanism prototype
+### Phase 5 — Constrained safety prototype
 
-Only after a causal signal has survived replication will a constrained detector/intervention prototype be tested. The prototype is a research instrument, not a claim of universal pre-emption. Evaluation includes false positives, false negatives, distribution shift and capability degradation.
+Only validated candidates progress to a detector/intervention prototype. The prototype is a research instrument with explicit false-positive, false-negative, distribution-shift and capability-degradation evaluation. It is not presented as universal pre-emption.
 
-## Success criteria
+## Methodological standard
 
-The project succeeds scientifically if it produces one or more of:
+The project distinguishes correlation from causation and exploratory from confirmatory analysis. Negative controls include shuffled labels, randomized features, task-difficulty matching, generic refusal baselines, prompt-only predictors and held-out task families where feasible.
 
-- a reproducible behavioural model organism with well-defined controls;
-- an internal feature that predicts the target behaviour on held-out conditions;
-- causal evidence connecting that feature to behaviour;
-- a robust negative result showing that a tempting interpretation does not generalise;
-- a reusable benchmark, dataset specification, evaluation harness or open-source analysis tool.
+A strong result must survive at least one meaningful replication with altered nuisance variables. A weak or non-replicating result is recorded rather than promoted through increasingly elaborate interpretations.
 
-The project does **not** require demonstrating a universal detector of deceptive alignment within the fellowship period.
+## Deliverables
+
+1. A reproducible benchmark and synthetic model-organism generator.
+2. An evaluation harness with held-out robustness tests.
+3. Representation/probe analysis code.
+4. Causal-intervention analysis code.
+5. A safety-bounded monitoring/intervention prototype if the evidence permits.
+6. A technical report or paper draft containing positive and negative results.
+7. Reproducible experiment metadata and open-source tooling where licensing permits.
 
 ## Milestones
 
-**Weeks 1–2:** reproduce baselines; lock environments; establish metrics and safety controls.
+**Weeks 1–2:** reproduce baselines, lock the environment, define metrics, build the initial benchmark.
 
-**Weeks 3–4:** generate and validate model-organism conditions; run first robustness checks.
+**Weeks 3–4:** validate model-organism conditions, quantify behavioural effects, run first robustness checks.
 
-**Weeks 5–7:** representation analysis and probe comparison; identify candidate mechanisms.
+**Weeks 5–7:** representation analysis, probe comparison, held-out generalisation and candidate selection.
 
-**Weeks 8–9:** causal interventions and replication; measure collateral effects.
+**Weeks 8–9:** causal interventions, replication and collateral-effect measurement.
 
-**Weeks 10–12:** consolidate results, publish code and negative results, prepare follow-on research plan.
+**Week 10:** consolidate results, document failures and prepare the follow-on research agenda.
 
-## Positioning within MATS
+MATS's current Autumn 2026 programme page states that the programme runs from September 28 to December 4, 2026. citeturn252053search3
 
-The project is primarily empirical and intersects with interpretability, evaluations, oversight and the science of scheming. MATS's Autumn 2026 program describes an Apollo Research stream focused on empirically studying oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and scaling of misaligned behaviour. citeturn213781search6
+## Fit with MATS
 
-MATS also describes an Autumn 2026 ARC stream whose agenda is more theoretically oriented and emphasises mathematical maturity; this proposal should therefore be presented as empirical first, with theory used to sharpen hypotheses rather than as a claim that the project belongs to ARC's core agenda. citeturn213781search3
+This project is primarily empirical. It is intentionally framed as a tractable subproblem within the Apollo Science of Scheming agenda rather than as a claim to reproduce a mentor's exact project. MATS identifies controlled model organisms, oversight gaming, alignment faking, deceptive alignment and scaling questions as relevant directions for the stream. citeturn252053search4
+
+## Theory of impact
+
+The immediate contribution is a more reliable methodology for separating behaviour from mechanism. A positive result would provide a reusable path from observed oversight sensitivity to causal representation tests. A negative result would identify brittle signatures and help prevent researchers from treating prompt-sensitive artefacts as evidence of deceptive intent.
+
+The longer-term objective is better empirical understanding of scheming dynamics and more reliable monitoring research, not a single universal detector.
+
+## Feasibility and prototype status
+
+The repository contains a runnable synthetic vertical slice: deterministic data generation, matched oversight conditions, held-out evaluation, AUROC/AUPRC metrics, tests and CI. The prototype is intentionally harmless and does not connect models to external systems.
+
+## Application-integrity constraint
+
+MATS currently states that LLMs may not be used to write any part of the application unless a specific work test or form explicitly permits it. citeturn252053search1 This repository therefore serves as a research, verification and engineering dossier. Any final application submission must be independently authored and checked by the applicant in accordance with MATS rules.
