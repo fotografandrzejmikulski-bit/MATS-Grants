@@ -1,6 +1,6 @@
 # MATS Autumn 2026 — Application Research Master Draft
 
-> **Important:** This document is a research-writing aid. MATS's Autumn 2026 application FAQ states that LLMs may not be used to write application content unless a specific work test or form explicitly permits it. The applicant must independently rewrite, verify and submit any application text in accordance with the current rules.
+> **Application-integrity notice:** MATS's Autumn 2026 FAQ states that LLMs may not be used to write application content unless a specific work test or form explicitly permits it. This document is therefore a research-writing aid and must not be submitted verbatim where prohibited. The applicant must independently author, verify and submit the final application.
 
 ## Working title
 
@@ -8,43 +8,45 @@
 
 ## Project summary
 
-I want to investigate a narrow empirical question: when a model behaves differently under different oversight conditions, can we distinguish ordinary context sensitivity from a reproducible change associated with oversight-sensitive behaviour, and can internal representations provide additional predictive or causal evidence?
+I want to study a narrow empirical question: when a model behaves differently under different oversight conditions, can we distinguish ordinary context sensitivity from a reproducible oversight-sensitive effect, and can internal representations provide additional predictive or causal evidence?
 
-The project deliberately avoids assuming that a behavioural anomaly is deceptive alignment. Instead, I will construct small, contained model-organism environments, measure behaviour under matched conditions, and then test whether candidate internal signals predict the effect on held-out tasks. Only candidate signals that survive robustness tests will be subjected to causal interventions. A final prototype will explore whether a validated signal can support a constrained monitoring or intervention mechanism without unacceptable capability loss.
+Rather than assuming that an anomaly is deceptive alignment, I will construct small, contained model-organism environments, measure behaviour under matched conditions, and test whether candidate internal signals predict the effect on held-out data. Only signals that survive robustness checks will be subjected to causal interventions. A final stage will explore whether a validated signal can support a constrained monitoring or intervention mechanism without unacceptable capability loss.
 
-This direction closely matches the Autumn 2026 Apollo Research Science of Scheming stream, which explicitly focuses on empirical study of oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and scaling questions. citeturn252053search4turn252053search6
+This direction is closely aligned with MATS's Autumn 2026 Apollo Research Science of Scheming stream, which explicitly describes empirical work on oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and scaling questions. citeturn252053search4turn252053search6
 
-## Why this project
+## Research motivation
 
-The central scientific risk is confusing compelling behaviour with the mechanism that caused it. A model can appear deceptive because of prompt framing, reward artefacts, evaluator leakage, task-selection effects or ordinary strategic adaptation. My proposed contribution is therefore an evidence ladder: behavioural effect → predictive internal signal → causal intervention → robustness → safety relevance.
+The main methodological failure mode I want to address is confusing compelling behaviour with the mechanism that caused it. Apparent deception can arise from prompt framing, reward artefacts, evaluator leakage, task-selection effects or ordinary strategic adaptation. My proposed contribution is an evidence ladder:
 
-This creates a tractable path to useful negative results as well as positive ones. If candidate features fail held-out generalisation, the result still informs future evaluations by showing which apparent signatures are non-robust.
+**behavioural effect → predictive internal signal → causal intervention → robustness → safety relevance**
+
+Each stage must earn the next. Negative results are first-class outcomes.
 
 ## Research questions
 
 ### RQ1 — Behavioural consistency
-Can a controlled model organism exhibit a reproducible difference between monitored and weakly monitored conditions while matched for task family and difficulty?
+Can a contained model organism exhibit a reproducible difference between stronger and weaker oversight conditions while task family and difficulty are matched?
 
 ### RQ2 — Internal signatures
-Do activation-derived features predict oversight-sensitive behaviour on held-out prompts and tasks better than behavioural or prompt-only baselines?
+Do activation-derived features predict the target behaviour on held-out prompts and tasks better than prompt-only and behavioural baselines?
 
 ### RQ3 — Causal structure
-Does intervention on a candidate representation change the target behaviour in a reproducible direction, while preserving task capability and accounting for generic refusal effects?
+Does intervention on a candidate representation change the target behaviour in the expected direction while preserving task capability and controlling for generic refusal effects?
 
 ### RQ4 — Robustness
-Do candidate signals survive changes in prompt wording, task family, random seed, model checkpoint and evaluator configuration where feasible?
+Do candidate signals survive changes in prompt wording, task family, random seed, evaluator configuration and, where feasible, model checkpoint?
 
 ## Falsifiable hypotheses
 
-**H1:** Controlled training/evaluation can produce a repeatable oversight-condition effect in a synthetic or otherwise contained model-organism environment.
+**H1:** A contained model organism can exhibit a repeatable oversight-condition effect.
 
-**H2:** Some internal representation measurements predict this effect on held-out data above strong behavioural baselines.
+**H2:** Some internal representation measurements predict that effect on held-out data above strong behavioural baselines.
 
-**H3:** At least one candidate representation will show causal influence under intervention, rather than merely correlating with the target.
+**H3:** At least one candidate representation shows causal influence under controlled intervention.
 
-**H4:** A substantial fraction of initially attractive candidate signals will fail robustness or negative-control tests.
+**H4:** A substantial fraction of initially attractive candidate signals fail robustness or negative-control tests.
 
-The project is successful even if H3 is rejected, provided the failure mode is measured rigorously and produces a reusable benchmark or methodological insight.
+Rejection of H3 is a scientifically useful outcome. The project does not require demonstrating a universal detector of deceptive alignment.
 
 ## Experimental strategy
 
@@ -54,48 +56,70 @@ Establish capability, task difficulty, refusal and oversight-condition baselines
 
 ### Stage 2 — Model-organism evaluation
 
-Use only contained, synthetic or otherwise approved research environments. Generate multiple conditions and seeds. Lock train/validation/test splits before evaluating held-out data.
+Use synthetic or explicitly approved contained environments. Generate multiple conditions and random seeds. Freeze train/validation/test splits before inspecting held-out outcomes.
 
 ### Stage 3 — Representation analysis
 
-Compare simple linear probes with sparse-feature methods where appropriate. Report AUROC/AUPRC, calibration, cross-prompt transfer, cross-task transfer and leakage controls. A probe is treated as a measurement instrument, not as proof of a semantic concept.
+Compare simple linear probes with sparse-feature methods where justified. Report AUROC/AUPRC, calibration, cross-prompt transfer, cross-task transfer and leakage controls. A probe is a measurement instrument; it is not automatically a semantic label for an intention or goal.
 
-### Stage 4 — Causal tests
+### Stage 4 — Causal intervention
 
-Ablate, patch or steer candidate representations in the contained benchmark. Measure target behaviour, task performance, refusal rate and collateral changes. Require replication before making mechanistic claims.
+Ablate, patch or steer candidate representations in the contained benchmark. Measure target behaviour, task capability, refusal rate and collateral changes. Require replication before making mechanistic claims.
 
 ### Stage 5 — Constrained safety prototype
 
-Only validated candidates are connected to a detector/intervention prototype. The prototype is framed as an experimental safety mechanism, not a universal deceptive-alignment detector or guaranteed circuit breaker.
+Only validated candidates progress to a detector/intervention prototype. The prototype is a research instrument with explicit false-positive, false-negative, distribution-shift and capability-degradation evaluation. It is not presented as a universal circuit breaker.
 
-## Expected deliverables
+## Experimental design
+
+The minimum confirmatory design should cover two oversight conditions, at least four task families, at least four prompt templates per family, and at least three random seeds, with task difficulty matched within family. Where feasible, a second checkpoint should be used to test transfer.
+
+Primary analyses should be frozen before confirmatory evaluation. Record the primary metric, comparison, splits, exclusion rules, seeds, minimum effect of interest, stopping/scaling rule, negative controls and intervention specification.
+
+## Evidence standard
+
+A behavioural difference supports a behavioural claim, not a claim about deception. A predictive probe supports the presence of predictive information, not semantic interpretability. A successful intervention supports causal influence under that intervention, not a universal mechanism. Strong claims require robustness and replication.
+
+Negative controls include shuffled labels, randomized feature directions, matched task difficulty, generic refusal/safety baselines, prompt-only predictors and held-out prompt/task families where feasible.
+
+## Deliverables
 
 1. Reproducible benchmark and synthetic model-organism generator.
 2. Evaluation harness with held-out robustness tests.
 3. Representation/probe analysis pipeline.
-4. Causal-intervention analysis scripts.
-5. Safety-bounded prototype and documented failure modes.
-6. Technical report or paper draft containing both positive and negative results.
-7. Open-source code and experiment metadata where model/data licenses permit.
+4. Causal-intervention analysis code.
+5. Safety-bounded monitoring/intervention prototype if the evidence permits.
+6. Technical report or paper draft containing positive and negative results.
+7. Reproducible experiment metadata and open-source tooling where licensing permits.
 
-## Impact pathway
+## Milestones
 
-The immediate impact is methodological: improve the ability of alignment researchers to distinguish behavioural evidence from mechanistic evidence. A successful result could provide a reusable measurement strategy for oversight-sensitive behaviour; a negative result could prevent wasted effort on brittle signatures. The longer-term pathway is better empirical understanding of scheming dynamics and more reliable monitoring research.
+**Weeks 1–2:** reproduce baselines, lock the environment, define metrics and build the benchmark.
+
+**Weeks 3–4:** validate model-organism conditions, quantify behavioural effects and run initial robustness checks.
+
+**Weeks 5–7:** representation analysis, probe comparison, held-out generalisation and candidate selection.
+
+**Weeks 8–9:** causal interventions, replication and collateral-effect measurement.
+
+**Week 10:** consolidate results, document failures, package reproducible artefacts and define the follow-on research agenda.
+
+MATS's current Autumn 2026 page states that the programme runs from September 28 to December 4, 2026. citeturn252053search3
+
+## Theory of impact
+
+The immediate impact is methodological: improve the ability of alignment researchers to distinguish behavioural evidence from mechanistic evidence. A positive result would provide a reusable route from observed oversight sensitivity to causal representation tests. A negative result would identify brittle signatures and reduce the chance that prompt-sensitive artefacts are treated as evidence of deceptive intent.
+
+The longer-term contribution would be better empirical understanding of scheming dynamics and more reliable monitoring research.
 
 ## Feasibility
 
-The repository already contains a runnable vertical slice using a harmless synthetic generator, deterministic evaluation, metrics, tests and continuous integration. The prototype is intentionally small: the scaling policy is evidence-gated, so larger models or more compute are introduced only when preceding experiments establish a reason to scale.
+The repository includes a runnable synthetic vertical slice with deterministic generation, matched oversight conditions, held-out evaluation, AUROC/AUPRC metrics, automated tests, configuration as code and continuous integration. The prototype is intentionally small and harmless. Scaling is evidence-gated rather than assumed.
 
 ## Fit with MATS
 
-The project is primarily empirical. It is intentionally aligned with the Autumn 2026 Apollo Research Science of Scheming agenda rather than claiming to reproduce a mentor's exact project. MATS describes the stream as empirical work on oversight gaming, alignment faking and deceptive alignment, with examples including controlled model organisms and scaling laws. citeturn252053search4
+This is primarily an empirical project. It is intentionally scoped as a tractable contribution to the Apollo Science of Scheming agenda rather than an attempt to claim ownership of a mentor's project. MATS explicitly identifies controlled model organisms, oversight gaming, alignment faking, deceptive alignment and scaling questions as relevant directions for this stream. citeturn252053search4
 
-MATS's Autumn 2026 program runs from September 28 to December 4, 2026 and describes a 10-week Berkeley/London main program with optional funded extensions. citeturn252053search3
+## Application-integrity constraint
 
-## Programme awareness
-
-The applicant should tailor the final application to the exact MATS form and any work tests. MATS explicitly states that LLMs may not be used to write application content unless a specific work test or form permits it. citeturn252053search1
-
-## What I would do differently after a null result
-
-If no robust internal signal is found, I would not broaden the claim. I would publish the benchmark, identify which controls eliminate the apparent effect, and use the result to choose a narrower next experiment. This is a deliberate part of the project design rather than an afterthought.
+MATS currently states that LLMs may not be used to write any part of the application unless a specific work test or form explicitly permits it. citeturn252053search1 Any final submission must therefore be independently authored and checked by the applicant under the applicable MATS rules.
