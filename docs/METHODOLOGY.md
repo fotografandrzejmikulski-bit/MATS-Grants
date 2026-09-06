@@ -1,48 +1,95 @@
-# Methodology and Evidence Standard
+# Methodology Standard
 
-## Scope
+## Objective
 
-The project studies whether controlled, oversight-sensitive behaviour can be measured and linked to internal representations. It does not assume that observed behaviour is deceptive, that a probe is a mechanistic explanation, or that a detected representation is sufficient for deployment-time intervention.
+The methodology is designed to prevent the project from confusing three different claims:
 
-## Evidence ladder
+1. **Behavioural claim:** the model behaves differently under specified conditions.
+2. **Predictive claim:** an internal measurement predicts that difference out of sample.
+3. **Mechanistic claim:** intervening on the measured representation changes the behaviour causally.
 
-1. **Behavioural effect:** a prespecified metric differs between matched conditions.
-2. **Predictive representation:** an internal measurement predicts the target on held-out prompts/tasks.
-3. **Causal evidence:** intervention on a candidate representation changes the target variable.
-4. **Robustness:** the result survives changes in prompts, task family, seed and, where feasible, checkpoint.
-5. **Safety relevance:** the effect remains useful under realistic nuisance variables without unacceptable collateral effects.
+The strength of evidence must increase from one level to the next.
 
-A result is not promoted up the ladder merely because it is visually striking or statistically significant on one split.
+## Experimental units
 
-## Experimental discipline
+The preferred unit is a complete task trajectory within a fixed, versioned environment. Repeated samples generated from the same latent task or template must not be treated as independent observations when doing so would create leakage or inflate effective sample size.
 
-All primary train/validation/test splits are defined before inspecting held-out outcomes. Primary analyses should use fixed seeds, explicit dataset manifests, versioned configurations and machine-readable outputs. Exploratory analyses are labelled separately from confirmatory analyses.
+## Pre-registration-lite
 
-## Negative controls
+Before confirmatory runs, record:
 
-The minimum negative-control suite is:
+- primary outcome;
+- treatment/oversight conditions;
+- key covariates and exclusion rules;
+- train/validation/test split rule;
+- primary baseline;
+- candidate intervention family;
+- stopping/scaling criteria.
 
-- shuffled labels;
-- randomized feature directions;
-- matched task difficulty;
-- generic refusal/safety features;
-- prompt-only predictors;
-- held-out prompt templates;
-- held-out task families where feasible.
+Exploratory analyses remain allowed, but must be labelled as exploratory when they influence later hypothesis formation.
 
-## Interpretation rules
+## Baseline ladder
 
-A probe identifies predictive information, not semantic truth. An SAE feature identifies a direction in a learned dictionary, not automatically a human-interpretable concept. Activation steering or patching demonstrates causal dependence only relative to the intervention and controls actually used.
+Run the simplest informative baseline first:
 
-## Reproducibility
+**majority predictor → prompt/context-only predictor → matched-task behavioural baseline → linear representation probe → sparse-feature method → causal intervention.**
 
-Every reported result should have:
+A more complicated method must demonstrate incremental information over the simpler baseline it replaces.
 
-- configuration file;
-- code version / commit SHA;
-- model identifier and checkpoint where legally shareable;
+## Representation analysis
+
+Activation-derived measurements may be useful even when their semantics are uncertain. Therefore:
+
+- report the exact layer/token aggregation;
+- report preprocessing and normalization;
+- retain the feature-selection procedure;
+- evaluate held-out examples;
+- test transfer across prompts/tasks;
+- quantify leakage from task or condition labels;
+- compare against randomized controls.
+
+A high-performing probe is evidence of predictability, not proof of a human-interpretable concept.
+
+## Causal analysis
+
+Interventions should be minimal and hypothesis-directed. For each intervention, record:
+
+- target representation;
+- intervention magnitude or rule;
+- control intervention;
+- expected direction;
+- target-behaviour outcome;
+- capability outcome;
+- refusal/safety outcome;
+- replication result.
+
+Where practical, include matched interventions on unrelated features as negative controls.
+
+## Robustness
+
+A claimed mechanism should be stress-tested against changes that should not alter the underlying phenomenon but could alter superficial correlations: prompt wording, task templates, task families, random seeds, evaluator instructions and model checkpoint.
+
+## Interpretation policy
+
+Use calibrated language:
+
+- **Observed:** directly measured in the benchmark.
+- **Supported:** consistent across pre-specified controls and replications.
+- **Causal evidence:** intervention changes the target with controls.
+- **Speculative:** plausible interpretation not established by the experiment.
+
+Never upgrade a speculative interpretation into a scientific conclusion solely because it provides a coherent narrative.
+
+## Reproducibility package
+
+Every reported experiment should have:
+
+- immutable experiment ID;
+- code revision;
+- configuration snapshot;
 - random seeds;
-- dataset manifest or generator parameters;
-- metric definitions;
-- raw machine-readable result;
-- summary interpretation and known limitations.
+- model/checkpoint identifier where applicable;
+- dataset/task generator version;
+- metrics and uncertainty estimates;
+- pass/fail/ambiguous status;
+- notes on deviations from protocol.
