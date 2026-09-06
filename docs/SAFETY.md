@@ -1,33 +1,44 @@
-# Safety and containment
+# Safety, Containment and Dual-Use Policy
 
-This project studies deceptive behaviour and misuse-relevant failure modes. The research must therefore be conducted in environments that prevent the experiments from becoming operational capabilities.
+## Scope
 
-## Containment principles
+This repository concerns AI alignment research involving deceptive or oversight-sensitive behaviour. The goal is to improve measurement and causal understanding without turning the research environment into an operational misuse platform.
 
-1. Use toy or sandboxed environments and synthetic tasks whenever possible.
-2. Do not connect experimental agents to production credentials, real-world control systems, personal accounts, or unrestricted external execution.
-3. Prefer offline evaluation and allowlisted resources.
-4. Store model checkpoints, prompts and logs with access controls appropriate to their sensitivity.
-5. Do not use real biological, financial, credential theft, or intrusion targets merely to demonstrate a failure mode.
-6. Separate measurement from intervention: first establish an effect, then test a minimally invasive causal intervention.
+## Hard boundaries
 
-## Evaluation safety
+Experiments MUST remain within approved, sandboxed environments. Do not provide experimental agents with:
 
-The proposal's examples involving harmful domains should be converted into synthetic placeholders whenever possible. Safety-relevant behaviours can be tested with abstract task environments without reproducing actionable CBRN, fraud, or cyber instructions.
+- production credentials or secrets;
+- access to personal accounts or private data;
+- unrestricted network access or shell access to external systems;
+- real financial targets or transaction authority;
+- real biological systems or laboratory execution;
+- real intrusion targets or persistence mechanisms.
 
-## Research integrity
+The prototype in this repository is synthetic-only.
 
-Potentially exciting mechanistic findings require replication, negative controls and held-out evaluation. A probe correlating with a behaviour is not sufficient evidence that the probe represents an intention, goal or deception mechanism.
+## Safe experimental design
+
+Use abstract task environments and non-actionable placeholders for misuse-relevant domains. Keep measurement and intervention separate: first establish whether a phenomenon exists, then test a minimal intervention in the same controlled environment.
+
+## Data governance
+
+Track model/data provenance, configuration hashes, experiment IDs and access permissions. Avoid committing secrets, private datasets or proprietary model weights. Store large or sensitive artefacts outside Git when required by their licence or sensitivity.
 
 ## Stop conditions
 
-Pause an experiment if:
+Stop and review the experiment when any of the following occurs:
 
-- the model begins producing operationally dangerous content beyond the approved evaluation scope;
-- the sandbox boundary is violated or an external tool becomes reachable unexpectedly;
-- a proposed intervention materially increases harmful capability outside the intended test environment;
-- logging or access control is insufficient to reconstruct the experiment safely.
+1. the sandbox boundary is unexpectedly crossed;
+2. a model produces operationally dangerous content outside the approved test envelope;
+3. an intervention increases harmful capability outside the intended benchmark;
+4. logs are insufficient to reconstruct what happened;
+5. a dependency or data source introduces an unreviewed external capability.
 
-## Reporting
+## Publication policy
 
-Publish methods, benchmarks, failure cases and negative results where safe. Do not publish operational exploit details when they would materially increase real-world misuse risk.
+Publish reproducible methods, benchmark definitions, safe outputs and negative results where possible. Withhold or abstract details whose disclosure would materially increase real-world misuse capability. The objective is scientific utility, not operational exploit dissemination.
+
+## Research integrity
+
+A visually compelling activation map is not a result by itself. Claims about internal mechanisms require explicit controls, held-out evaluation, causal tests and replication. Exploratory analyses must be labelled as exploratory.
