@@ -1,17 +1,21 @@
-# Evidence ledger
+# Evidence Ledger
 
-This file records claims that matter to the application and how they should be framed.
+This ledger separates verified programme facts from research hypotheses, engineering aspirations and unsupported claims.
 
-| Claim | Status | Treatment |
-|---|---|---|
-| MATS provides $1,250/week stipend | Official current source | Use as program fact. citeturn213781search2 |
-| MATS provides $2,000/week compute | Official current source | Use as program fact. citeturn213781search2 |
-| Housing and catered meals are provided | Official current source | Use as program fact, subject to cohort/location details. citeturn213781search0turn213781search2 |
-| Autumn 2026 main program is 10–12 weeks | Official current source | Use instead of asserting exactly 10 weeks. citeturn213781search8 |
-| Apollo Science of Scheming is an Autumn 2026 stream | Official current source | Strongest direct positioning for this proposal. citeturn213781search6 |
-| ARC Autumn 2026 is primarily theoretical | Official current source | Do not overstate fit as an ARC empirical project. citeturn213781search3 |
-| MATS has 190+ publications / h-index 48 / 80% alumni | Stale or unsupported in current pages | Remove from application unless independently verified against an authoritative current source. |
-| "4–7% acceptance rate" | Unsupported in current reviewed pages | Remove unless directly sourced. |
-| "80% of fellows" extension acceptance | Current FAQ gives ~80% among applicants | Phrase carefully as historical extension acceptance among those who applied. citeturn213781search9 |
-| Guaranteed J-1 for every international applicant | Too strong | Say MATS states J-1 visa support/coverage where needed; avoid implying immigration approval is guaranteed. citeturn213781search0 |
-| Universal neural circuit breaker can prevent frontier catastrophe | Speculative | Reframe as a constrained research prototype and do not claim deployment-grade prevention. |
+| ID | Claim / statement | Type | Treatment |
+|---|---|---|---|
+| E-01 | Autumn 2026 runs September 28–December 4, 2026 | Programme fact | Use current official MATS source. citeturn252053search3 |
+| E-02 | Apollo Research Science of Scheming focuses on oversight gaming, alignment faking and deceptive alignment | Programme fact | Strongest direct project fit. citeturn252053search4turn252053search6 |
+| E-03 | Controlled model-organism experiments are explicitly within the Apollo stream agenda | Programme fact | Use as project-positioning evidence. citeturn252053search4 |
+| E-04 | MATS prohibits LLM-written application content unless a specific work test/form permits it | Application rule | Keep as a warning; applicant must comply independently. citeturn252053search1 |
+| E-05 | MATS describes a 10-week Autumn 2026 programme | Programme fact | Use the current programme wording and dates; avoid mixing it with unrelated cohort wording. citeturn252053search3 |
+| E-06 | $1,250/week stipend and $2,000/week compute are current published planning figures | Programme fact | Preserve only when directly tied to the current official programme source; do not claim universal reimbursement terms. |
+| E-07 | Housing, catered meals and visa support are universally guaranteed in every circumstance | Overstated | Use only the exact current programme wording relevant to the applicant's location/status. |
+| E-08 | 190+ publications, h-index 48, 4–7% acceptance rate and similar historical statistics are current facts | Unsupported/stale | Excluded from the core proposal unless independently re-verified from authoritative current sources. |
+| E-09 | A universal neural circuit breaker can prevent frontier catastrophe | Speculative | Reframed as a constrained research prototype with explicit limitations. |
+| E-10 | A probe identifies a human-interpretable internal intention | Unsupported inference | Explicitly rejected by the methodology. |
+| E-11 | A behavioural difference automatically demonstrates deception | Unsupported inference | Requires controls and alternative explanations. |
+
+## Source policy
+
+Programme claims must be verified against current official MATS sources immediately before submission. Research claims should be linked to primary papers, benchmark documentation or original experimental evidence. Preliminary measurements remain labelled as preliminary.
