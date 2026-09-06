@@ -1,23 +1,40 @@
-# Budget assumptions
+# Budget Plan — Autumn 2026 Research Project
 
-## Program-level facts
+## Verified programme context
 
-The official MATS site currently states a weekly stipend of $1,250 and a weekly compute budget of $2,000. For a 10-week main program this implies $12,500 stipend and $20,000 compute; however, the current program page describes a 10–12 week program, so the application should not present a fixed 10-week calculation as a universal program entitlement without matching the specific offer. citeturn213781search2turn213781search8
+The official MATS Autumn 2026 page currently describes the main programme as running from September 28 to December 4, 2026. It also describes the programme as 10 weeks and an optional 6–12 month funded extension pathway. citeturn252053search3
 
-MATS also states that housing and catered meals are provided, with travel and J-1 visa support where needed. citeturn213781search0turn213781search2
+MATS's current programme information should be treated as the source of truth for any application-specific funding or logistics claims. Do not present historical or inferred amounts as guaranteed entitlements.
 
-## Proposed research allocation
+## Planning principle
 
-| Workstream | Proposed allocation | Purpose |
+The project uses **evidence-gated scaling**. Compute is not requested because a large budget exists; it is allocated to experiments that have passed predefined evidence thresholds.
+
+## Proposed compute allocation
+
+| Workstream | Planning allocation | Decision gate |
 |---|---:|---|
-| Model-organism training/evaluation | $7,000 | controlled experiments, ablations, repeated seeds |
-| Representation analysis | $6,000 | activation collection, SAE/probe experiments |
-| Inference/evaluation | $4,000 | held-out tests, robustness, replication |
-| Safety evaluation/prototype | $3,000 | containment and causal intervention evaluation |
-| **Total** | **$20,000** | |
+| Baselines and model-organism evaluation | $7,000 | Scale only after reproducible behavioural effect |
+| Representation analysis | $6,000 | Scale only after held-out predictive signal |
+| Robustness and replication | $4,000 | Expand only if candidate survives controls |
+| Causal/safety prototype evaluation | $3,000 | Use only for validated candidate mechanisms |
+| **Total planning envelope** | **$20,000** | Subject to programme rules and actual usage |
 
-These are planning allocations, not a claim about guaranteed reimbursement for particular vendors or hardware. Actual compute consumption should be tracked by experiment, model, tokens/steps and cost.
+These allocations are planning assumptions, not claims about guaranteed reimbursement, vendor commitments or minimum required spend.
 
-## Budget discipline
+## Cost tracking
 
-Do not justify compute with unsupported claims such as "hundreds of billions of tokens are mandatory." Instead, specify scaling triggers: increase compute only after a smaller experiment passes pre-defined quality and robustness thresholds.
+Each experiment should record:
+
+- experiment ID;
+- model/checkpoint;
+- number of trajectories or tokens;
+- wall-clock runtime;
+- accelerator configuration;
+- estimated cloud cost;
+- result status: `pass`, `fail`, `exploratory`;
+- reason for scaling or termination.
+
+## Stop-spend criteria
+
+Do not increase compute when the previous stage fails its evidence gate, produces only prompt-specific effects, or cannot distinguish the candidate signal from a strong baseline. A null result should reduce spend rather than trigger automatic scaling.
