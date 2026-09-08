@@ -1,6 +1,6 @@
 # MATS Autumn 2026 — Application Research Master Draft
 
-> **Application-integrity warning:** MATS states that LLMs may not be used to write any part of an application unless a specific work test or form explicitly permits it. This document is therefore a research and verification draft. The applicant must independently author, edit, fact-check and submit final responses in accordance with the current MATS rules.
+> **Application-integrity warning:** MATS currently states that LLMs may not be used to write any part of an application unless a specific work test or form explicitly permits it. This document is therefore a research and verification aid, not a submission-ready answer set. The applicant must independently author, edit, fact-check and submit final responses under the live MATS rules. citeturn621132search1turn621132search9
 
 ## Applicant
 
@@ -8,33 +8,29 @@
 mojealterego21@gmail.com  
 +48 455 575 337
 
-## Target
+## Target positioning
 
 **Programme:** MATS Autumn 2026  
 **Primary track:** Empirical  
 **Primary stream:** Apollo Research — Science of Scheming
 
-MATS currently lists the Autumn 2026 programme as running from **September 28 to December 4, 2026**. The programme is described as a 10-week main programme with an optional funded extension pathway. citeturn232071search4
-
-The Apollo Science of Scheming stream is explicitly focused on empirically studying oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and questions about how scheming-relevant behaviour scales. citeturn232071search1
+MATS currently describes the Apollo Science of Scheming stream as empirical research on oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and questions about scaling scheming-relevant behaviour. citeturn621132search0turn621132search2
 
 ## Working title
 
 **From Oversight-Sensitive Behaviour to Causal Representation Tests: A Reproducible Empirical Framework for the Science of Scheming**
 
-## Project summary
+## Research question
 
-I propose to study a narrow empirical question: when a model behaves differently under different oversight conditions, can we distinguish ordinary context dependence from a reproducible oversight-sensitive effect, and can internal representations provide additional predictive or causal evidence?
+When a model behaves differently under different oversight conditions, can we distinguish ordinary context dependence from a reproducible oversight-sensitive effect, and can internal representations provide additional predictive or causal evidence?
 
-The project deliberately avoids assuming that a behavioural anomaly is deceptive alignment. I will begin with small, contained model-organism environments, measure behaviour under matched conditions, and test whether candidate internal signals generalise to held-out prompts and tasks. Only candidates that survive robustness checks will be subjected to causal interventions. A final prototype will test whether a validated signal can support constrained monitoring or intervention without unacceptable capability loss.
+## Core thesis
 
-## Why this question matters
-
-The central methodological danger is confusing a striking output with the mechanism that produced it. Oversight-sensitive behaviour can be confounded by prompt framing, task difficulty, evaluator leakage, reward artefacts, distribution shift or generic refusal behaviour. A useful contribution therefore needs an evidence ladder:
+I would treat this as a measurement problem before treating it as a deception problem. A behavioural anomaly can arise from prompt framing, task difficulty, evaluator leakage, reward artefacts, selection effects or generic refusal behaviour. The project therefore follows an evidence ladder:
 
 **behavioural effect → predictive internal signal → causal intervention → robustness → safety relevance.**
 
-This structure makes negative results scientifically valuable. A candidate that disappears under held-out evaluation or a negative control is evidence against a tempting interpretation and can prevent future researchers from mistaking brittle correlations for mechanisms.
+The scientific target is not to prove a dramatic story quickly. It is to identify which explanations survive controlled tests.
 
 ## Research questions
 
@@ -60,46 +56,49 @@ Do candidate signals survive changes in prompt wording, task family, random seed
 
 **H4:** A substantial fraction of initially attractive candidate signals fail robustness or negative-control tests.
 
-Rejecting H3 is a valid scientific outcome. The project does not require demonstrating a universal deceptive-alignment detector.
+Rejecting H3 is a valid scientific result. The project does not require demonstrating a universal deceptive-alignment detector or production-grade circuit breaker.
 
-## Experimental design
+## Experimental strategy
 
 ### Phase 1 — Baselines
 
-Establish capability, task difficulty, refusal and oversight-condition baselines. Use deterministic configurations and matched task families before introducing any manipulation.
+Establish capability, task difficulty, refusal and oversight-condition baselines. Freeze the measurement protocol before substantive screening.
 
 ### Phase 2 — Model-organism evaluation
 
-Use synthetic or explicitly approved contained environments. Generate multiple seeds, task families and prompt templates. Freeze train/validation/test splits before inspecting held-out results.
+Use synthetic or explicitly approved contained environments. Vary task families, prompt templates and random seeds. Freeze train/validation/test groups before looking at held-out outcomes, using group-aware partitioning where latent templates could leak.
 
 ### Phase 3 — Representation analysis
 
-Compare simple linear probes with sparse-feature methods where justified. Report AUROC/AUPRC, calibration, held-out transfer, leakage controls and representation stability. A probe is a measurement instrument; it is not by itself evidence that the model has a human-interpretable internal intention.
+Start with simple predictors. Compare behavioural and prompt-only baselines with activation-derived linear probes and, where justified, sparse-feature representations. Report AUROC/AUPRC, calibration, transfer, leakage controls and uncertainty. A probe is a measurement instrument, not proof of an internal semantic concept.
 
 ### Phase 4 — Causal testing
 
-Apply minimal ablations, activation patching or steering to candidate representations in the contained benchmark. Measure target behaviour, task performance, refusal rate and collateral effects. Require replication before making mechanistic claims.
+Intervene minimally on shortlisted representations using ablation, patching or steering within the contained benchmark. Measure target behaviour, capability, refusal and collateral effects. Require replication before making mechanistic claims.
 
 ### Phase 5 — Constrained safety prototype
 
-Only validated candidates progress to a detector/intervention prototype. The prototype is explicitly experimental and bounded. It is evaluated for false positives, false negatives, distribution shift and capability degradation rather than presented as a universal circuit breaker.
+Only candidates that pass behavioural, predictive, robustness and causal gates progress to a detector/intervention prototype. Evaluate false positives, false negatives, distribution shift and capability degradation. The prototype is explicitly a research instrument, not a universal safety guarantee.
 
-## Analysis and statistical discipline
+## Controls
 
-The analysis distinguishes exploratory from confirmatory work. Primary metrics and decision gates should be written down before inspecting held-out outcomes. Results are stratified by task family and condition where sample size permits. Effect sizes and uncertainty intervals should accompany point estimates. Multiple seeds and materially changed nuisance variables should be used for replication where feasible.
-
-The core negative controls are:
+The minimum negative-control suite is:
 
 - prompt-only predictors;
 - matched task-difficulty controls;
-- shuffled-label or randomized-feature baselines;
+- shuffled-label or randomized-feature controls;
 - generic refusal/safety baselines;
 - held-out prompt templates;
-- held-out task families.
+- held-out task families;
+- sham interventions where causal tests are performed.
+
+## Statistical discipline
+
+Primary metrics and decision gates should be recorded before confirmatory analysis. Report effect sizes, sample counts and uncertainty intervals. When many candidate features or interventions are screened, distinguish exploratory discovery from confirmatory testing and disclose the screening procedure. Null results and failed hypotheses are retained as first-class outputs.
 
 ## Scaling policy
 
-Start with the smallest model and environment capable of testing the next hypothesis. Increase model size, trajectory count or representation width only after the preceding stage meets a predefined evidence threshold. This makes compute an evidence-gated resource rather than an unconditional budget target.
+Start with the smallest model and environment that can answer the next question. Increase model size, trajectory count, representation width or context length only when the preceding evidence gate passes. This makes compute conditional on information gained, rather than treating maximum spend as an objective.
 
 ## Deliverables
 
@@ -107,44 +106,36 @@ Start with the smallest model and environment capable of testing the next hypoth
 2. Behavioural evaluation harness with held-out robustness tests.
 3. Representation/probe analysis pipeline.
 4. Causal-intervention evaluation code.
-5. Safety-bounded monitoring/intervention prototype, if justified by evidence.
+5. Safety-bounded monitoring/intervention prototype, only if evidence justifies it.
 6. Technical report or paper draft containing positive and negative results.
-7. Reproducibility metadata and open-source tooling where licensing and safety permit.
+7. Reproducibility metadata and safe open-source tooling where licensing permits.
 
-## Ten-week execution plan
+## Ten-week execution frame
 
-**Weeks 1–2:** reproduce baseline, lock environment, define metrics and pre-analysis criteria.
+**Weeks 1–2:** reproduce baseline; lock environment; define metrics and analysis gates.  
+**Weeks 3–4:** validate model-organism conditions; quantify behavioural effects; run initial robustness checks.  
+**Weeks 5–7:** representation analysis; held-out prediction; candidate selection.  
+**Weeks 8–9:** causal interventions; robustness; replication; collateral-effect measurement.  
+**Week 10:** consolidate findings; document failures; package safe artifacts; define follow-on work.
 
-**Weeks 3–4:** validate model-organism conditions and quantify behavioural effects.
+## Fit with MATS
 
-**Weeks 5–7:** representation analysis, held-out prediction and candidate selection.
+The project is primarily empirical and deliberately narrow. Its strongest fit is the Apollo Science of Scheming stream because that stream explicitly names oversight gaming, alignment faking, deceptive alignment, controlled model organisms and scaling questions. citeturn621132search0turn621132search2
 
-**Weeks 8–9:** causal interventions, robustness checks and replication.
+The proposed contribution is not to assume scheming has already been demonstrated. It is to improve the evidential chain from an observed oversight-sensitive effect to a representation-level hypothesis and, only where justified, to causal evidence.
 
-**Week 10:** consolidate findings, document failures, release safe artifacts and define follow-on work.
+## Feasibility
 
-## Fit with the Apollo stream
+The repository contains a safe synthetic vertical slice with deterministic generation, schema validation, held-out prediction, negative controls, tests, configuration-as-code and continuous integration. This demonstrates experimental infrastructure and implementation discipline; it is not presented as evidence that the scientific hypotheses are true in frontier models.
 
-The fit is direct and deliberately narrow. MATS describes Apollo Research's Autumn 2026 Science of Scheming stream as empirical work on oversight gaming, alignment faking and deceptive alignment, with controlled model-organism experiments and scaling questions among its stated directions. citeturn232071search1
+## Safety and dual-use
 
-The project is designed to contribute to this agenda without assuming the conclusion in advance. Its strongest value is a disciplined bridge between behavioural evaluation and mechanistic evidence: first establish a reliable phenomenon, then determine whether internal measurements add information, then ask whether those measurements are causally relevant.
-
-## Fit with MATS expectations
-
-MATS's current programme material emphasises fast empirical iteration, strong experimental design, attention to confounders and baselines, and the ability to implement and debug evaluation pipelines. citeturn232071search5 The repository is therefore intentionally structured around a small runnable vertical slice, explicit tests, configuration-as-code, reproducibility checks and evidence-gated scaling.
-
-## Feasibility and prototype evidence
-
-The repository contains a harmless synthetic vertical slice with deterministic data generation, matched oversight conditions, held-out predictive evaluation, AUROC/AUPRC metrics, negative-control tests and CI. This demonstrates engineering discipline and experimental scaffolding; it is not presented as empirical evidence that deceptive alignment or scheming exists in the synthetic generator.
-
-## Safety and dual-use boundary
-
-All initial experiments remain in synthetic or sandboxed environments. No production credentials, real-world control systems, real biological systems, real financial targets or unrestricted external execution are required. Safety-relevant behaviours should be represented with abstract non-actionable tasks whenever possible. Stop conditions are defined in `docs/SAFETY.md`.
+The research should remain in synthetic or explicitly approved contained environments. No production credentials, unrestricted external execution, real biological systems, financial targets or intrusion targets are required. Safety-relevant behaviour should be represented using abstract, non-actionable tasks whenever possible. Stop conditions are defined in `docs/SAFETY.md`.
 
 ## Honest failure criteria
 
-The project will explicitly record and analyse null results. A candidate mechanism is not promoted merely because it is interesting. If the apparent signal disappears under held-out tasks, altered prompts, negative controls or replication, the result will be treated as evidence against that candidate explanation.
+The project is allowed to fail. If an apparent effect disappears under held-out tasks, changed prompts, negative controls or replication, the result should be reported as evidence against that candidate explanation. A null result should narrow the claim rather than trigger uncontrolled escalation of complexity or compute.
 
-## Programme compliance
+## Administrative note
 
-MATS currently states that LLMs may not be used to write application content unless a specific work test or form explicitly permits it, and that use may be monitored. citeturn232071search3 Any submission must therefore be independently authored and verified by the applicant under the current application rules.
+MATS's current materials should be treated as the authoritative source for dates, application stages, funding, eligibility, logistics and any submission-specific instructions. The live application form outranks this repository.
