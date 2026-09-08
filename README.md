@@ -1,24 +1,19 @@
 # MATS Grants — Research Dossier & Safe Vertical Slice
 
-**Working title:** *From Oversight-Sensitive Behaviour to Causal Representation Tests: A Reproducible Empirical Framework for the Science of Scheming*
-
+**Working title:** *From Oversight-Sensitive Behaviour to Causal Representation Tests: A Reproducible Empirical Framework for the Science of Scheming*  
 **Applicant:** Andrzej Mikulski  
-**Target programme:** MATS Autumn 2026  
-**Primary track:** Empirical  
-**Primary stream:** Apollo Research — Science of Scheming  
+**Target:** MATS Autumn 2026 — primarily the Apollo Research **Science of Scheming** stream  
 **Status:** research dossier + runnable synthetic prototype
 
-> **Application-integrity notice:** MATS currently states that LLMs may not be used to write any part of an application unless a specific work test or form explicitly permits it. This repository is therefore an engineering/research aid. The applicant must independently author, edit, fact-check and submit final application answers under the current rules. citeturn232071search3
+> **Application-integrity notice:** MATS currently states that LLMs may not be used to write any part of an application unless a specific work test or form explicitly permits it. This repository is therefore a research, verification and engineering aid. The applicant must independently author, edit, fact-check and submit final application answers under the current rules. citeturn621132search1turn621132search9
 
-## Current programme facts
+## Current programme fit
 
-MATS lists the Autumn 2026 programme as running from **September 28 to December 4, 2026**. It describes a 10-week main programme and an optional funded extension pathway. Applications close **September 6, 2026, end of day anywhere on Earth**. citeturn232071search4
+The current MATS Autumn 2026 materials identify Apollo Research — Science of Scheming as an **Empirical** stream focused on oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and empirical scaling questions. citeturn621132search0turn621132search2
 
-The Apollo Research **Science of Scheming** stream explicitly focuses on oversight gaming, alignment faking and deceptive alignment, including controlled model-organism experiments and questions about scaling behaviour. citeturn232071search1
+The project is framed as a narrow empirical subproblem within that agenda rather than as an attempt to reproduce the entire stream.
 
 ## Research thesis
-
-The project asks a deliberately narrow question:
 
 > When a model behaves differently under different oversight conditions, can we distinguish ordinary context dependence from a reproducible oversight-sensitive effect, and can internal representations provide additional predictive or causal evidence?
 
@@ -28,39 +23,39 @@ The project does **not** assume that a behavioural anomaly is deceptive alignmen
 
 `behavioural effect → predictive internal signal → causal intervention → robustness → safety relevance`
 
-Each stage must earn the right to motivate the next. Negative results are first-class outcomes.
+Each stage must earn the right to motivate the next. Negative results are first-class research outputs.
 
 ## Repository structure
 
 ```text
 .
-├── configs/
-│   └── demo.yaml
+├── .github/workflows/ci.yml
+├── configs/demo.yaml
 ├── docs/
 │   ├── APPLICANT_PROFILE.md
+│   ├── APPLICATION_METADATA.md
 │   ├── BUDGET.md
 │   ├── CHANGELOG.md
+│   ├── COMPUTE_AND_REPRODUCIBILITY.md
 │   ├── EVIDENCE.md
 │   ├── EXPERIMENT_MATRIX.md
 │   ├── GRANT_APPLICATION_MASTER.md
 │   ├── GRANT_PROPOSAL.md
 │   ├── METHODOLOGY.md
+│   ├── QUALITY_AUDIT.md
 │   ├── RESEARCH_PLAN.md
 │   └── SAFETY.md
-├── scripts/
-│   └── run_demo.py
-├── src/
-│   └── mats_research/
-│       ├── __init__.py
-│       ├── evaluate.py
-│       └── synthetic.py
-├── tests/
-│   └── test_vertical_slice.py
+├── scripts/run_demo.py
+├── src/mats_research/
+│   ├── __init__.py
+│   ├── evaluate.py
+│   └── synthetic.py
+├── tests/test_vertical_slice.py
 ├── pyproject.toml
 └── README.md
 ```
 
-## Run the vertical slice
+## Runnable prototype
 
 ```bash
 python -m pip install -e ".[test]"
@@ -68,30 +63,28 @@ pytest -q
 python scripts/run_demo.py
 ```
 
-The demo uses a synthetic, harmless dataset. It does not train or deploy an agent, connect models to external systems, execute generated actions, or target real-world assets.
+The demo is synthetic and harmless. It does not train an agent, execute generated actions, connect to external systems, or target real-world assets.
 
-## What the prototype demonstrates
+## Prototype evidence boundary
 
-- deterministic synthetic data generation with schema validation;
-- matched oversight conditions and a known synthetic data-generating process;
-- behavioural effect measurement;
-- held-out linear predictive baseline;
-- AUROC/AUPRC reporting;
-- a shuffled-label negative control;
-- reproducibility and validation tests;
-- configuration as code;
-- continuous integration across supported Python versions.
+The vertical slice demonstrates research infrastructure: deterministic generation, schema validation, matched oversight conditions, behavioural effect estimation, held-out linear prediction, AUROC/AUPRC, a shuffled-label negative control, reproducibility tests, configuration-as-code and CI.
 
-This is **research infrastructure**, not evidence that the scientific hypotheses are true.
-
-## Research documentation
-
-`docs/GRANT_APPLICATION_MASTER.md` is the main English application-writing research draft. `docs/GRANT_PROPOSAL.md` is the shorter narrative. `docs/RESEARCH_PLAN.md`, `docs/METHODOLOGY.md` and `docs/EXPERIMENT_MATRIX.md` define the experimental standard. `docs/SAFETY.md` defines containment and stop conditions. `docs/EVIDENCE.md` tracks externally verifiable claims. `docs/BUDGET.md` separates programme facts from planning assumptions. `APPLICANT_PROFILE.md` contains administrative applicant metadata.
-
-## Safety boundary
-
-Only synthetic or explicitly approved contained environments should be used. Do not connect experiments to production credentials, personal accounts, real infrastructure, unrestricted external execution, real biological systems, financial targets or intrusion targets. Harmful-domain prompts should be abstracted into non-actionable placeholders wherever possible.
+It is **not** empirical evidence about frontier scheming, deceptive alignment, internal intentions or a production safety mechanism.
 
 ## Scientific standard
 
-A candidate mechanism is not called explanatory merely because a probe correlates with behaviour. Stronger language requires held-out generalisation, causal intervention, negative controls and replication. See `docs/METHODOLOGY.md`.
+A candidate mechanism is not called explanatory merely because a probe correlates with behaviour. Stronger claims require held-out generalisation, appropriate negative controls, causal intervention and replication. The repository-level audit standard is in `docs/QUALITY_AUDIT.md`.
+
+## Safety boundary
+
+Public experiments must remain synthetic or explicitly approved and contained. Do not connect research agents to production credentials, personal accounts, real biological systems, financial targets, intrusion targets or unrestricted external execution. Safety-relevant behaviours should be represented with abstract, non-actionable tasks whenever possible. Stop conditions are defined in `docs/SAFETY.md`.
+
+## Applicant data
+
+Canonical contact metadata is stored separately from experimental code and datasets. See `docs/APPLICANT_PROFILE.md` and `docs/APPLICATION_METADATA.md`.
+
+## Current programme facts
+
+MATS's current Autumn 2026 materials describe a staged track/stream application process, sustained research engagement, and the Apollo Science of Scheming stream described above. The current FAQ also states the LLM-use restriction for application writing. citeturn621132search1turn621132search9
+
+Programme funding, travel, visa and logistics details should be checked against the current official MATS materials at the point of submission rather than copied from historical cohort assumptions.
