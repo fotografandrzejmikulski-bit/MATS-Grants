@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=68,<81"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "mats-grants-research"
-version = "0.2.0"
+version = "0.3.0"
 description = "Safe, reproducible research harness for oversight-sensitive model behaviour"
 requires-python = ">=3.10"
 readme = "README.md"
@@ -25,4 +25,8 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = "-ra"
+addopts = "-ra --strict-markers"
+markers = [
+  "unit: deterministic unit tests",
+  "research: research-pipeline tests",
+]
